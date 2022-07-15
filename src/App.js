@@ -7,7 +7,8 @@ const App = () => {
   const [words, setWords] = useState(null);
   const [correctAnswers, setCorrectAnswers]=useState([]);
   const [clicked, setClicked] = useState([])
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
+  const [wrongAnswers, setWrongAnswers] = useState([])
 
   const getRandomWords = () => {
     const options = {
@@ -42,6 +43,7 @@ const App = () => {
       setCorrectAnswers([...correctAnswers, answer])
       setScore((score)=> score+1)
     } else{
+      setWrongAnswers([...wrongAnswers, answer])
       setScore((score)=> score-1)
     }
     setClicked([...clicked, answer])
@@ -51,6 +53,9 @@ const App = () => {
   console.log("correct answers:", correctAnswers)
 
   console.log("clicked", clicked)
+
+  console.log("wrong answers:", wrongAnswers)
+
 
   return (
     <div className="app">
@@ -94,7 +99,8 @@ const App = () => {
                 disabled={clicked.includes(answer)}
                 onClick={()=>checkAnswer(answer, answerIndex+1, question.correct)}
                 >{answer}</button>
-                {correctAnswers.includes(answer)&& <p>Correct!</p> }
+                {correctAnswers.includes(answer)? <p className="correct">CORRECT!</p> : null}
+                {wrongAnswers.includes(answer)? <p className="wrong">WRONG!</p> : null}
               </div>
             ))}
             </div>

@@ -1,27 +1,31 @@
 .app{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  display: flex;
   text-align: center;
-  justify-content: center;
-  padding-top: 2rem;
+  padding: 8rem 1rem;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  background-image: url("https://wallpaperaccess.com/full/242332.jpg");
+  background-size: cover;
 }
 
-
-
-.question-area{
-  width: 100vh;
+.level-selector{
+  height: 100vh;
 }
 
 .question-box {
-  background-color: darkgray;
+  background-color: white;
   padding: 1rem;
   border-radius: 10px;
-  margin: 1rem;
-  width: 20vh;
+  margin: 0.5rem;
+  width: 50vw;
+  color: black;
+  
 }
 
 .question-buttons {
   display: flex;
+  justify-content: center;
 }
 
 .question-button {
@@ -30,25 +34,25 @@
 }
 
 .questions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(10, 2fr);
+  justify-items: center;
 }
 
 button {
   margin: 5px;
-  padding: 5px;
+  padding: 0.5rem 0.75rem;
   border-radius: 5px;
   border: none;
-  background-color: darkcyan;
-  color: white;
-
-  
+  background-color:cornflowerblue;
+  color: black;
+  font-size: 0.75rem;
 }
 
 button:disabled {
   background-color: lightgray;
-  color: darkgray;
+  color: white;
 }
 
 button:disabled:hover {
@@ -58,15 +62,110 @@ button:disabled:hover {
 }
 
 button:hover {
-  background-color: dodgerblue;
+  background-color:chartreuse;
   cursor: pointer;
+  color: white;
 }
 
 select {
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid white;
   background-color: black;
   color: white;
+  font-size: 1rem;
 }
+
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+h3{
+  font-size: 1rem;
+}
+
+.correct {
+  font-weight: bolder;
+  color:chartreuse;
+}
+
+.wrong {
+  font-weight: bolder;
+  color:red;
+}
+
+
+@media screen and (min-width: 768px) and (max-width:1023px) {
+  .questions {
+    grid-template-columns: repeat(2, 25fr);
+    grid-template-rows: repeat(5, 50fr);
+    justify-items:center;
+  }
+
+  .question-box {
+    width: 40vw;
+  }
+
+  select {
+    font-size: 2rem;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  p {
+    font-size: 2rem;
+  }
+  
+  h3{
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 1.25rem;
+  }
+  
+  
+}
+
+@media screen and (min-width: 1024px)  {
+  .questions {
+    grid-template-columns: repeat(4, 30fr);
+    grid-template-rows: repeat(3, 50fr);
+    justify-items:center;
+  }
+
+  .question-box {
+    width: 20vw;
+    margin: 15px 5px;
+  }
+
+  select {
+    font-size: 2rem;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  p {
+    font-size: 2rem;
+  }
+  
+  h3{
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+  
+  
+}
+

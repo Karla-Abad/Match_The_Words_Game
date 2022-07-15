@@ -1,23 +1,15 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
-.level-selector{
-  background-color: aquamarine;
-}
 
 .question-area{
-  background-color: dodgerblue;
+  width: 100vh;
 }
 
 .question-box {
@@ -25,6 +17,7 @@ code {
   padding: 1rem;
   border-radius: 10px;
   margin: 1rem;
+  width: 20vh;
 }
 
 .question-buttons {
@@ -34,4 +27,46 @@ code {
 .question-button {
   display: flex;
   flex-direction: column;
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: darkcyan;
+  color: white;
+
+  
+}
+
+button:disabled {
+  background-color: lightgray;
+  color: darkgray;
+}
+
+button:disabled:hover {
+  background-color: lightgray;
+  color: darkgray;
+  cursor: initial;
+}
+
+button:hover {
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+select {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
 }

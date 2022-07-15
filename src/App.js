@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 
 const App = () => {
 
-  const [chosenLevel, setChosenLevel] = useState("2");
-  const [words, setWords] = useState(null)
+  const [chosenLevel, setChosenLevel] = useState(null);
+  const [words, setWords] = useState(null);
+  const [correctAnswers, setCorrectAnswers]=useState([]);
+  const [clicked, setClicked] = useState([])
+  const [score, setScore] = useState(0)
 
   const getRandomWords = () => {
     const options = {
@@ -12,7 +15,7 @@ const App = () => {
       url: 'https://twinword-word-association-quiz.p.rapidapi.com/type1/',
       params: {level: chosenLevel, area: 'sat'},
       headers: {
-        'X-RapidAPI-Key': '258f668178mshff6f5fe71f0e9aep1857c4jsn00850b41f96a',
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
         'X-RapidAPI-Host': 'twinword-word-association-quiz.p.rapidapi.com'
       }
     };
@@ -33,8 +36,24 @@ const App = () => {
     }
   }, [chosenLevel])
 
+  const checkAnswer = (answer, answerIndex, correctAnswer) => {
+    console.log(answerIndex, correctAnswer)
+    if (answerIndex == correctAnswer){
+      setCorrectAnswers([...correctAnswers, answer])
+      setScore((score)=> score+1)
+    } else{
+      setScore((score)=> score-1)
+    }
+    setClicked([...clicked, answer])
+
+  }
+
+  console.log("correct answers:", correctAnswers)
+
+  console.log("clicked", clicked)
+
   return (
-    <div className="App">
+    <div className="app">
       {!chosenLevel && <div className="level-selector">
         <h1>Match The Words Game</h1>
         <p>Select Your Level To Start!</p>
@@ -59,29 +78,33 @@ const App = () => {
 
       {chosenLevel && words && <div className="question-area">
         <h1>Welcome To Level: {chosenLevel}</h1>
+        <h3>Your Score Is: {score}</h3>
 
-        {words.quizlist.map((question, questionIndex) => (
-          <div className="question-box">
+        <div className="questions">
+        {words.quizlist.map((question, _questionIndex) => (
+          <div key={_questionIndex} className="question-box">
             {question.quiz.map((word, _index) => (
               <p key={_index}>{word}</p>
             ))}
             
             <div className="question-buttons">
             {question.option.map((answer, answerIndex) => (
-              <div className="question-button">
-                <button>{answer}</button>
+              <div key={answerIndex} className="question-button">
+                <button 
+                disabled={clicked.includes(answer)}
+                onClick={()=>checkAnswer(answer, answerIndex+1, question.correct)}
+                >{answer}</button>
+                {correctAnswers.includes(answer)&& <p>Correct!</p> }
               </div>
-              
             ))}
             </div>
-            
-
-            <p>{question.correct}</p>
           </div>
         ))}
+        </div>
+
+            <button onClick={()=>setChosenLevel(null)}>Go Back</button>
 
       </div>}
-     
     </div>
   );
 }

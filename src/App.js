@@ -31,7 +31,7 @@ const App = () => {
       });
   };
 
-  console.log(words && words.quizlist);
+  console.log(words && words.quizlist && chosenLevel);
 
   useEffect(() => {
     if (chosenLevel) {
